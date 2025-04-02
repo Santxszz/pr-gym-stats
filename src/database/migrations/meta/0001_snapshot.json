@@ -1,6 +1,6 @@
 {
-  "id": "5814d64e-5e5c-4bdb-8887-99def8040bc6",
-  "prevId": "8ad553c3-efb2-4759-bc15-e7906be14c75",
+  "id": "abbbecfe-5a6e-43e6-b04f-7128cefe2292",
+  "prevId": "35a60afb-0eb2-420b-992b-538e8170012c",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -273,6 +273,42 @@
         "age": {
           "name": "age",
           "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "zip_code": {
+          "name": "zip_code",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "street": {
+          "name": "street",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "street_number": {
+          "name": "street_number",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "neighborhood": {
+          "name": "neighborhood",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "city": {
+          "name": "city",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "state": {
+          "name": "state",
+          "type": "text",
           "primaryKey": false,
           "notNull": true
         },
