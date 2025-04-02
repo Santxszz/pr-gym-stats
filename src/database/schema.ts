@@ -22,12 +22,12 @@ export const usersTable = pgTable("users_table", {
 	age: integer("age").notNull(),
 
 	// User Address
-	// zip_code: text("zip_code").notNull(),
-	// street: text("street").notNull(),
-	// street_number: text("street_number").notNull(),
-	// neighborhood: text("neighborhood").notNull(),
-	// city: text("city").notNull(),
-	// state: text("state").notNull(), // TODO: Add
+	zip_code: text("zip_code").notNull(),
+	street: text("street"),
+	street_number: text("street_number"),
+	neighborhood: text("neighborhood"),
+	city: text("city").notNull(),
+	state: text("state").notNull(), // TODO: Add
 
 	// User Security
 	password: text("password").notNull(),

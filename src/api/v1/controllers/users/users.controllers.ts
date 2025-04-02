@@ -4,11 +4,20 @@ import ListUsersService from "@api/v1/services/users/list-users-service";
 import ShowUserService from "@api/v1/services/users/show-user-service";
 import UpdateUserService from "@api/v1/services/users/update-user-service";
 import type { Request, Response } from "express";
+import z from "zod";
 
 export default class UserController {
 	public async create(req: Request, res: Response): Promise<Response> {
-		const { full_name, nick_name, email, height, weight, age, password } =
-			req.body;
+		const {
+			full_name,
+			nick_name,
+			email,
+			height,
+			weight,
+			age,
+			password,
+			zip_code,
+		} = req.body;
 
 		const userService = new CreateUserService();
 
@@ -17,6 +26,7 @@ export default class UserController {
 			nick_name,
 			email,
 			height,
+			zip_code,
 			weight,
 			age,
 			password,
@@ -24,11 +34,16 @@ export default class UserController {
 
 		return res.status(201).json({
 			id: user.id,
-			ext_id: user.ext_id,
 			full_name: user.full_name,
 			nick_name: user.nick_name,
 			email: user.email,
 			height: user.height,
+			zip_code: user.zip_code,
+			street: user.street,
+			street_number: user.street_number,
+			neighborhood: user.neighborhood,
+			city: user.city,
+			state: user.state,
 			weight: user.weight,
 			age: user.age,
 			created_at: user.created_at,
@@ -93,7 +108,7 @@ export default class UserController {
 
 		return res.status(200).json({
 			id: updatedUser.id,
-			ext_id: updatedUser.ext_id,
+			ext_id: updatedUser,
 			full_name: updatedUser.full_name,
 			nick_name: updatedUser.nick_name,
 			email: updatedUser.email,

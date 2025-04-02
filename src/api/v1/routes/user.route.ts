@@ -22,6 +22,10 @@ userRoutes.post(
 				"string.empty": "O e-mail é obrigatório",
 				"any.required": "O e-mail é obrigatório",
 			}),
+			zip_code: Joi.string().required().messages({
+				"string.empty": "O CEP é obrigatório",
+				"any.required": "O CEP é obrigatório",
+			}),
 			height: Joi.number().integer().positive().required().messages({
 				"number.base": "A altura deve ser um número",
 				"number.integer": "A altura deve ser um número inteiro",
