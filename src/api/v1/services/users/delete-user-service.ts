@@ -7,26 +7,23 @@ interface IUserInfo {
 	userId: string;
 }
 
-export default class ShowUserService {
+export default class DeleteUserService {
 	public async execute({ userId }: IUserInfo) {
-		const userIdExists = await db
+		const [userExists] = await db
 			.select()
 			.from(usersTable)
 			.where(eq(usersTable.ext_id, userId))
 			.limit(1);
 
-		if (userIdExists.length < 1) {
+		if (!userExists) {
 			throw new AppError("User not found", 404);
 		}
 
-		const userInfo = await db
-			.select()
-			.from(usersTable)
+		const [deletedUser] = await db
+			.delete(usersTable)
 			.where(eq(usersTable.ext_id, userId))
-			.limit(1);
-		if (!userInfo) {
-			throw new AppError("User not found", 404);
-		}
-		return userInfo[0];
+			.returning();
+
+		return deletedUser;
 	}
 }
