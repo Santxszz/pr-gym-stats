@@ -1,11 +1,11 @@
 import jwt from "jsonwebtoken";
 import AppError from "@api/v1/utils/ApiError";
+import e from "express";
 
 interface JwtPayload {
 	ext_id?: string;
 	id?: string;
 }
-
 
 export function getExtIdFromToken(token: string): string {
 	try {

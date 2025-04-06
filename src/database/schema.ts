@@ -49,7 +49,7 @@ export const equipamentos = pgTable("equipamentos", {
 		.notNull()
 		.references(() => usersTable.ext_id, { onDelete: "cascade" }),
 	nome: text("nome").notNull(),
-	tipo: text("tipo").notNull(), // "Máquina", "Livre", "Acessório"
+	tipo: text("tipo").notNull(), // "Máquina", "Livre"
 	created_at: timestamp("created_at").notNull().defaultNow(),
 	updated_at: timestamp("updated_at").notNull().defaultNow(),
 });

@@ -9,10 +9,6 @@ interface IUserInfo {
 
 export default class GetUserIMCService {
 	public async execute({ userId }: IUserInfo) {
-
-		console.log(userId)
-		console.log(">>>>>>>>>>>>>>>>")
-
 		const userIdExists = await db
 			.select()
 			.from(usersTable)
