@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { celebrate, Joi, Segments } from "celebrate";
 import UserController from "@controllers/users/users.controllers";
+import userAutenticated from "../middlewares/userAuthenticated";
 
 const userRoutes = Router();
 const userController = new UserController();
@@ -62,6 +63,7 @@ userRoutes.get(
 			userId: Joi.string().required(),
 		}),
 	}),
+	// userAutenticated,
 	userController.show,
 );
 
@@ -124,6 +126,25 @@ userRoutes.delete(
 		}),
 	}),
 	userController.delete,
+);
+
+userRoutes.post(
+	"/auth",
+	celebrate({
+		[Segments.BODY]: Joi.object({
+			email: Joi.string().email().required().messages({
+				"string.email": "Por favor, insira um e-mail válido",
+				"string.empty": "O e-mail é obrigatório",
+				"any.required": "O e-mail é obrigatório",
+			}),
+			password: Joi.string().min(8).required().messages({
+				"string.empty": "A senha é obrigatória",
+				"string.min": "A senha deve ter pelo menos 8 caracteres",
+				"any.required": "A senha é obrigatória",
+			}),
+		}),
+	}),
+	userController.auth,
 );
 
 export default userRoutes;

@@ -1,6 +1,5 @@
 import { integer, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
 import { createId } from "@paralleldrive/cuid2";
-import { is } from "drizzle-orm";
 
 export const usersTable = pgTable("users_table", {
 	// Id's

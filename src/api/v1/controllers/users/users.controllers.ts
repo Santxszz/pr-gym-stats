@@ -1,3 +1,4 @@
+import AuthUserService from "@api/v1/services/auth/auth-user-service";
 import CreateUserService from "@api/v1/services/users/create-user-service";
 import DeleteUserService from "@api/v1/services/users/delete-user-service";
 import ListUsersService from "@api/v1/services/users/list-users-service";
@@ -127,5 +128,17 @@ export default class UserController {
 		await userService.execute({ userId });
 
 		return res.status(204).send();
+	}
+
+	public async auth(req: Request, res: Response): Promise<Response> {
+		const { email, password } = req.body;
+
+		const userService = new AuthUserService();
+		const userAuth = await userService.execute({
+			email,
+			password,
+		});
+
+		return res.status(200).json(userAuth);
 	}
 }

@@ -4,6 +4,7 @@ import express, {
 	type NextFunction,
 } from "express";
 import { errors } from "celebrate";
+import cors from "cors";
 import errorHandler from "@api/v1/middlewares/errorHandler";
 import userRoutes from "./v1/routes/user.route";
 import healthRouter from "./v1/routes/health.route";
@@ -11,6 +12,7 @@ import healthRouter from "./v1/routes/health.route";
 const app = express();
 
 // Middlewares
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

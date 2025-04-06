@@ -83,6 +83,8 @@ export default class CreateUserService {
 			throw new AppError("Failed to create user", 500);
 		}
 
+		console.log("User created successfully", createdUser);
+
 		return {
 			id: createdUser.id,
 			full_name: createdUser.full_name,
