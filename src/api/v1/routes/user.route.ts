@@ -63,7 +63,7 @@ userRoutes.get(
 			userId: Joi.string().required(),
 		}),
 	}),
-	// userAutenticated,
+	userAutenticated,
 	userController.show,
 );
 
@@ -145,6 +145,18 @@ userRoutes.post(
 		}),
 	}),
 	userController.auth,
+);
+
+userRoutes.get(
+	"/userInfo",
+	userAutenticated,
+	celebrate({
+		[Segments.HEADERS]: Joi.object({
+			authorization: Joi.string().required(),
+		}).unknown(),
+	}),
+	userAutenticated,
+	userController.userInfo,
 );
 
 export default userRoutes;

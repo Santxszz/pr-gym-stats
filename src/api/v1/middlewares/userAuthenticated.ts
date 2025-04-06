@@ -20,7 +20,7 @@ export default async function userAutenticated(
 			if (err) {
 				throw new AppError("Token provided is invalid!", 403);
 			}
-            console.log("Token valido")
+
 			next();
 		},
 	);

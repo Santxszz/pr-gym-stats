@@ -4,6 +4,7 @@ import DeleteUserService from "@api/v1/services/users/delete-user-service";
 import ListUsersService from "@api/v1/services/users/list-users-service";
 import ShowUserService from "@api/v1/services/users/show-user-service";
 import UpdateUserService from "@api/v1/services/users/update-user-service";
+import { getExtIdFromToken } from "@api/v1/utils/getUserInfoToken";
 import type { Request, Response } from "express";
 import z from "zod";
 
@@ -54,6 +55,30 @@ export default class UserController {
 
 	public async show(req: Request, res: Response): Promise<Response> {
 		const { userId } = req.params;
+		const userService = new ShowUserService();
+
+		const user = await userService.execute({
+			userId,
+		});
+
+		const userResponse = {
+			id: user.id,
+			ext_id: user.ext_id,
+			full_name: user.full_name,
+			nick_name: user.nick_name,
+			email: user.email,
+			height: user.height,
+			weight: user.weight,
+			age: user.age,
+			created_at: user.created_at,
+			updated_at: user.updated_at,
+		};
+
+		return res.status(200).json(userResponse);
+	}
+
+	public async userInfo(req: Request, res: Response): Promise<Response> {
+		const userId = getExtIdFromToken(req.headers.authorization as string);
 		const userService = new ShowUserService();
 
 		const user = await userService.execute({

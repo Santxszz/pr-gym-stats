@@ -2,18 +2,14 @@ import { Router } from "express";
 import { celebrate, Joi, Segments } from "celebrate";
 import HealthController from "../controllers/users/health.controllers";
 import EquipamentoController from "../controllers/trainings/equip-controller";
+import userAutenticated from "../middlewares/userAuthenticated";
 
 const healthRouter = Router();
 const healthController = new HealthController();
 const equipController = new EquipamentoController
 
 healthRouter.get(
-	"/user/health/:userId",
-	celebrate({
-		[Segments.PARAMS]: Joi.object({
-			userId: Joi.string().required(),
-		}),
-	}),
+	"/user/health",
 	healthController.getImcHealth,
 );
 
