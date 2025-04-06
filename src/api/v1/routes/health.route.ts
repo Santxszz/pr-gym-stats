@@ -6,12 +6,8 @@ import userAutenticated from "../middlewares/userAuthenticated";
 
 const healthRouter = Router();
 const healthController = new HealthController();
-const equipController = new EquipamentoController
 
-healthRouter.get(
-	"/user/health",
-	healthController.getImcHealth,
-);
+healthRouter.get("/user/health", healthController.getImcHealth);
 
 healthRouter.post(
 	"/user/equipamento",
@@ -23,7 +19,7 @@ healthRouter.post(
 				"any.required": "O nome do equipamento é obrigatório",
 			}),
 			tipo: Joi.string()
-				.valid("Máquina", "Livre", "Acessório", "Barra", "Haltere")
+				.valid("Máquina", "Livre", "Barra", "Haltere")
 				.required()
 				.messages({
 					"any.only":
@@ -32,7 +28,13 @@ healthRouter.post(
 				}),
 		}),
 	}),
-	equipController.create,
+	healthController.createEquipment,
+);
+
+healthRouter.get(
+	"/user/heatlh/equipamentos",
+	userAutenticated,
+	healthController.getUserEquipaments,
 );
 
 export default healthRouter;
