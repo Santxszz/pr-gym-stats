@@ -32,7 +32,7 @@ healthRouter.post(
 );
 
 healthRouter.get(
-	"/user/heatlh/equipamentos",
+	"/user/heatlh/equipaments",
 	userAutenticated,
 	healthController.getUserEquipaments,
 );
