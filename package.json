@@ -1,5 +1,5 @@
 {
-  "name": "base-api-typescript",
+  "name": "power-track-api",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -15,12 +15,12 @@
     "@types/express": "^5.0.1",
     "@types/joi": "^17.2.2",
     "@types/jsonwebtoken": "^9.0.9",
-    "@types/node": "^22.13.4",
+    "@types/node": "^22.14.0",
     "dotenv": "^16.4.7",
     "drizzle-kit": "^0.30.6",
     "drizzle-orm": "^0.41.0",
-    "tsx": "^4.19.2",
-    "typescript": "^5.7.3"
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.3"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.0",
