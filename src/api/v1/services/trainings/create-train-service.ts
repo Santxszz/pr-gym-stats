@@ -1,57 +1,57 @@
 import AppError from "@utils/ApiError";
 import { db } from "@database/db";
-import { equipamentos, treinos, usersTable } from "@database/schema";
+import { equipment, trainings, usersTable } from "@database/schema";
 import { and, eq } from "drizzle-orm";
 
 interface IUserInfo {
-	equipamento_id: string;
-	movimento: string;
-	peso: number;
-	repeticoes: number;
+	equipament_id: string;
+	moviment: string;
+	weight: number;
+	repetitions: number;
 	series: number;
-	usuario_id: string;
+	user_id: string;
 }
 
 export default class CreateTrainingService {
 	public async execute({
-		equipamento_id,
-		movimento,
-		peso,
-		repeticoes,
+		equipament_id,
+		moviment,
+		weight,
+		repetitions,
 		series,
-		usuario_id,
+		user_id,
 	}: IUserInfo) {
 		const [equipamentoExistente] = await db
 			.select()
-			.from(equipamentos)
+			.from(equipment)
 			.where(
 				and(
-					eq(equipamentos.ext_id, equipamento_id),
-					eq(equipamentos.usuario_id, usuario_id),
+					eq(equipment.ext_id, equipament_id),
+					eq(equipment.user_id, user_id),
 				),
 			)
 			.limit(1);
 
 		if (!equipamentoExistente) {
-			throw new AppError("Equipamento não encontrado", 404);
+			throw new AppError("Equipment not found.", 404);
 		}
 
-		const novoTreino = await db
-			.insert(treinos)
+		const newTraining = await db
+			.insert(trainings)
 			.values({
-				movimento,
-				peso,
-				repeticoes,
+				equipament_id,
+				moviment,
+				weight,
+				repetitions,
 				series,
-				equipamento_id,
-				usuario_id,
+				user_id,
 			})
 			.returning();
 
-		if (!novoTreino) {
-			throw new AppError("Falha ao criar treino", 500);
+		if (!newTraining) {
+			throw new AppError("Failed to create workout.", 500);
 		}
 
-		return novoTreino;
+		return newTraining;
 	}
 }

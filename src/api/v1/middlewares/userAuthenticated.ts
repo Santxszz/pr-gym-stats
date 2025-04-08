@@ -13,7 +13,7 @@ export default async function userAutenticated(
 	if (!jwt) {
 		throw new AppError("Token not informed!", 404);
 	}
-	await jwtToken.verify(
+	jwtToken.verify(
 		String(bearerToken),
 		process.env.JWT_SECRET as string,
 		(err) => {

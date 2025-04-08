@@ -47,7 +47,7 @@ export default class AuthUserService {
 			ext_id: userExists[0].ext_id,
 		};
 
-		const userToken = await jwt.sign(tokenPayload, process.env.JWT_SECRET as string, {
+		const userToken = jwt.sign(tokenPayload, process.env.JWT_SECRET as string, {
 			expiresIn: "12h",
 		});
 

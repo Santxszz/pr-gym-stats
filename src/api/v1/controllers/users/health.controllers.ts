@@ -17,14 +17,14 @@ export default class HealthController {
 	}
 
 	public async createEquipment(req: Request, res: Response): Promise<Response> {
-		const { nome, tipo } = req.body;
-		const userId = getExtIdFromToken(req.headers.authorization as string);
+		const { name, equipament_kind } = req.body;
+		const user_id = getExtIdFromToken(req.headers.authorization as string);
 
 		const createEquipService = new CreateEquipService();
 		const user = await createEquipService.execute({
-			nome,
-			tipo,
-			usuario_id: userId,
+			name,
+			equipament_kind,
+			user_id,
 		});
 
 		return res.status(201).json(user);
@@ -34,11 +34,11 @@ export default class HealthController {
 		req: Request,
 		res: Response,
 	): Promise<Response> {
-		const userId = getExtIdFromToken(req.headers.authorization as string);
+		const user_id = getExtIdFromToken(req.headers.authorization as string);
 
 		const listEquipService = new GetUserEquipService();
 		const user = await listEquipService.execute({
-			usuario_id: userId,
+			user_id,
 		});
 
 		return res.status(200).json(user);

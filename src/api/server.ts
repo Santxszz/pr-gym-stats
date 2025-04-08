@@ -20,13 +20,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/v1/", userRoutes);
 app.use("/api/v1/", healthRouter);
 
-// Middleware de erro (deve ser o último)
+// Errors Middleware
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 	errorHandler(err, req, res, next);
 });
 app.use(errors());
 
-// Iniciar servidor
+// Start Server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
 	console.log(`Servidor rodando na porta ${PORT}`);

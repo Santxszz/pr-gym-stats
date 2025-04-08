@@ -1,23 +1,23 @@
 import AppError from "@utils/ApiError";
 import { db } from "@database/db";
-import { equipamentos, treinos, usersTable } from "@database/schema";
+import { equipment, trainings, usersTable } from "@database/schema";
 import { and, eq } from "drizzle-orm";
 
 interface IUserInfo {
-	usuario_id: string;
+	user_id: string;
 }
 
 export default class GetTrainingService {
-	public async execute({ usuario_id }: IUserInfo) {
-		const treinosExistente = await db
+	public async execute({ user_id }: IUserInfo) {
+		const trainingsRegistred = await db
 			.select()
-			.from(treinos)
-			.where(and(eq(treinos.usuario_id, usuario_id)));
+			.from(trainings)
+			.where(and(eq(trainings.user_id, user_id)));
 
-		if (!treinosExistente) {
-			throw new AppError("Você não possui treinos cadastrados", 404);
+		if (!trainingsRegistred) {
+			throw new AppError("You do not have any registered workouts.", 404);
 		}
 
-		return treinosExistente;
+		return trainingsRegistred;
 	}
 }
