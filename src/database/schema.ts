@@ -40,43 +40,36 @@ export const usersTable = pgTable("users_table", {
 	deleted_at: timestamp("deleted_at").notNull().defaultNow(),
 });
 
-export const equipamentos = pgTable("equipamentos", {
+export const equipment = pgTable("equipaments", {
 	id: serial("id"),
 	ext_id: text("ext_id")
 		.primaryKey()
 		.$defaultFn(() => createId()),
-	usuario_id: text("usuario_id")
+	user_id: text("user_id")
 		.notNull()
 		.references(() => usersTable.ext_id, { onDelete: "cascade" }),
-	nome: text("nome").notNull(),
-	tipo: text("tipo").notNull(), // "Máquina", "Livre"
+	name: text("name").notNull(),
+	equipament_kind: text("equipament_kind").notNull(), // "Máquina", "Livre"
 	created_at: timestamp("created_at").notNull().defaultNow(),
 	updated_at: timestamp("updated_at").notNull().defaultNow(),
 });
 
-export const treinos = pgTable("treinos", {
+export const trainings = pgTable("trainings", {
 	id: serial("id"),
 	ext_id: text("ext_id")
 		.primaryKey()
 		.$defaultFn(() => createId()),
-	usuario_id: text("usuario_id")
+	user_id: text("user_id")
 		.notNull()
 		.references(() => usersTable.ext_id, { onDelete: "cascade" }),
-	equipamento_id: text("equipamento_id").references(() => equipamentos.ext_id, {
+	equipament_id: text("equipament_id").references(() => equipment.ext_id, {
 		onDelete: "set null",
 	}),
-	movimento: text("movimento").notNull(),
-	peso: integer("peso").notNull(),
-	repeticoes: integer("repeticoes").notNull(),
+	moviment: text("movimento").notNull(),
+	weight: integer("peso").notNull(),
+	repetitions: integer("repeticoes").notNull(),
 	series: integer("series").notNull().default(3),
-	data: timestamp("data").notNull().defaultNow(),
+	date: timestamp("data").notNull().defaultNow(),
 	created_at: timestamp("created_at").notNull().defaultNow(),
 	updated_at: timestamp("updated_at").notNull().defaultNow(),
-});
-
-export const musculos_treino = pgTable("musculos_treino", {
-	treino_id: text("treino_id")
-		.notNull()
-		.references(() => treinos.ext_id, { onDelete: "cascade" }),
-	musculo: text("musculo").notNull(),
 });
