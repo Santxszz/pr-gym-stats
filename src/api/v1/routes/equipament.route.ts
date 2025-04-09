@@ -21,10 +21,6 @@ equipamentRouter.post(
 	equipamentController.create,
 );
 
-equipamentRouter.get(
-	"/list",
-	userAutenticated,
-	healthController.getUserEquipaments,
-);
+equipamentRouter.get("/list", userAutenticated, equipamentController.list);
 
 export default equipamentRouter;

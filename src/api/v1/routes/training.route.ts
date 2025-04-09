@@ -2,10 +2,10 @@ import { Router } from "express";
 import { celebrate, Joi, Segments } from "celebrate";
 
 import HealthController from "@api/v1/controllers/health/HealthController";
-import EquipamentController from "@api/v1/controllers/equipaments/EquipController";
+import TrainingController from "@api/v1/controllers/trainings/TrainingController";
 import userAutenticated from "@middlewares/userAuthenticated";
 
-const equipamentController = new EquipamentController();
+const trainingController = new TrainingController();
 const trainingRouter = Router();
 
 trainingRouter.post(
@@ -17,12 +17,13 @@ trainingRouter.post(
 			weight: Joi.number().required(),
 			repetitions: Joi.number().required(),
 			series: Joi.number().default(3),
+			muscle: Joi.string().required(),
 		}),
 	}),
 	userAutenticated,
-	equipamentController.create,
+	trainingController.createTraining,
 );
 
-trainingRouter.get("/list", userAutenticated, equipamentController.list);
+trainingRouter.get("/list", userAutenticated, trainingController.getTrainings);
 
 export default trainingRouter;

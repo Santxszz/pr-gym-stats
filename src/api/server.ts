@@ -9,6 +9,7 @@ import errorHandler from "@api/v1/middlewares/errorHandler";
 import userRoutes from "./v1/routes/user.route";
 import healthRouter from "./v1/routes/health.route";
 import trainingRouter from "./v1/routes/training.route";
+import equipamentRouter from "./v1/routes/equipament.route";
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/health", healthRouter);
 app.use("/api/v1/training", trainingRouter)
+app.use("/api/v1/equipament", equipamentRouter)
 
 // Errors Middleware
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {

@@ -1,7 +1,7 @@
 import type { Request, Response } from "express";
 
 import GetUserIMCService from "@api/v1/services/health/get-user-imc";
-import CreateEquipService from "@api/v1/services/trainings/create-equip-service";
+import CreateEquipService from "@api/v1/services/equipament/create-equip-service";
 import GetUserEquipService from "@api/v1/services/trainings/get-user-equip-service";
 import { getExtIdFromToken } from "@api/v1/utils/getUserInfoToken";
 

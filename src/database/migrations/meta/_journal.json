@@ -5,29 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1743598879895,
-      "tag": "0000_uneven_cargill",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1743599447674,
-      "tag": "0001_overrated_wrecking_crew",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1744151200339,
-      "tag": "0002_neat_elektra",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "7",
-      "when": 1744153679072,
-      "tag": "0003_known_red_ghost",
+      "when": 1744205109018,
+      "tag": "0000_simple_darkstar",
       "breakpoints": true
     }
   ]

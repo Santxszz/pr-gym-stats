@@ -5,7 +5,7 @@ import GetTrainingService from "@api/v1/services/trainings/get-training-service"
 
 export default class TrainingController {
 	public async createTraining(req: Request, res: Response): Promise<Response> {
-		const { equipament_id, moviment, weight, repetitions, series } = req.body;
+		const { equipament_id, moviment, weight, repetitions, series, muscle } = req.body;
 		const user_id = getExtIdFromToken(req.headers.authorization as string);
 
 		const createTrainingService = new CreateTrainingService();
@@ -16,6 +16,7 @@ export default class TrainingController {
 			weight,
 			repetitions,
 			series,
+			muscle,
 			user_id,
 		});
 

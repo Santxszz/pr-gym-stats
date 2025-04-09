@@ -1,11 +1,11 @@
 {
-  "id": "35a60afb-0eb2-420b-992b-538e8170012c",
+  "id": "9068af4d-cb9e-468c-b2ab-1ebfc7bbef5f",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
-    "public.equipamentos": {
-      "name": "equipamentos",
+    "public.equipaments": {
+      "name": "equipaments",
       "schema": "",
       "columns": {
         "id": {
@@ -20,20 +20,20 @@
           "primaryKey": true,
           "notNull": true
         },
-        "usuario_id": {
-          "name": "usuario_id",
+        "user_id": {
+          "name": "user_id",
           "type": "text",
           "primaryKey": false,
           "notNull": true
         },
-        "nome": {
-          "name": "nome",
+        "name": {
+          "name": "name",
           "type": "text",
           "primaryKey": false,
           "notNull": true
         },
-        "tipo": {
-          "name": "tipo",
+        "equipament_kind": {
+          "name": "equipament_kind",
           "type": "text",
           "primaryKey": false,
           "notNull": true
@@ -55,12 +55,12 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "equipamentos_usuario_id_users_table_ext_id_fk": {
-          "name": "equipamentos_usuario_id_users_table_ext_id_fk",
-          "tableFrom": "equipamentos",
+        "equipaments_user_id_users_table_ext_id_fk": {
+          "name": "equipaments_user_id_users_table_ext_id_fk",
+          "tableFrom": "equipaments",
           "tableTo": "users_table",
           "columnsFrom": [
-            "usuario_id"
+            "user_id"
           ],
           "columnsTo": [
             "ext_id"
@@ -75,47 +75,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.musculos_treino": {
-      "name": "musculos_treino",
-      "schema": "",
-      "columns": {
-        "treino_id": {
-          "name": "treino_id",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "musculo": {
-          "name": "musculo",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {
-        "musculos_treino_treino_id_treinos_ext_id_fk": {
-          "name": "musculos_treino_treino_id_treinos_ext_id_fk",
-          "tableFrom": "musculos_treino",
-          "tableTo": "treinos",
-          "columnsFrom": [
-            "treino_id"
-          ],
-          "columnsTo": [
-            "ext_id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
-      "policies": {},
-      "checkConstraints": {},
-      "isRLSEnabled": false
-    },
-    "public.treinos": {
-      "name": "treinos",
+    "public.trainings": {
+      "name": "trainings",
       "schema": "",
       "columns": {
         "id": {
@@ -130,14 +91,14 @@
           "primaryKey": true,
           "notNull": true
         },
-        "usuario_id": {
-          "name": "usuario_id",
+        "user_id": {
+          "name": "user_id",
           "type": "text",
           "primaryKey": false,
           "notNull": true
         },
-        "equipamento_id": {
-          "name": "equipamento_id",
+        "equipament_id": {
+          "name": "equipament_id",
           "type": "text",
           "primaryKey": false,
           "notNull": false
@@ -167,6 +128,12 @@
           "notNull": true,
           "default": 3
         },
+        "muscle": {
+          "name": "muscle",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
         "data": {
           "name": "data",
           "type": "timestamp",
@@ -191,12 +158,12 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "treinos_usuario_id_users_table_ext_id_fk": {
-          "name": "treinos_usuario_id_users_table_ext_id_fk",
-          "tableFrom": "treinos",
+        "trainings_user_id_users_table_ext_id_fk": {
+          "name": "trainings_user_id_users_table_ext_id_fk",
+          "tableFrom": "trainings",
           "tableTo": "users_table",
           "columnsFrom": [
-            "usuario_id"
+            "user_id"
           ],
           "columnsTo": [
             "ext_id"
@@ -204,12 +171,12 @@
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
-        "treinos_equipamento_id_equipamentos_ext_id_fk": {
-          "name": "treinos_equipamento_id_equipamentos_ext_id_fk",
-          "tableFrom": "treinos",
-          "tableTo": "equipamentos",
+        "trainings_equipament_id_equipaments_ext_id_fk": {
+          "name": "trainings_equipament_id_equipaments_ext_id_fk",
+          "tableFrom": "trainings",
+          "tableTo": "equipaments",
           "columnsFrom": [
-            "equipamento_id"
+            "equipament_id"
           ],
           "columnsTo": [
             "ext_id"
@@ -286,19 +253,19 @@
           "name": "street",
           "type": "text",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "street_number": {
           "name": "street_number",
           "type": "text",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "neighborhood": {
           "name": "neighborhood",
           "type": "text",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "city": {
           "name": "city",

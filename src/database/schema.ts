@@ -69,6 +69,7 @@ export const trainings = pgTable("trainings", {
 	weight: integer("peso").notNull(),
 	repetitions: integer("repeticoes").notNull(),
 	series: integer("series").notNull().default(3),
+	muscle: text("muscle").notNull(),
 	date: timestamp("data").notNull().defaultNow(),
 	created_at: timestamp("created_at").notNull().defaultNow(),
 	updated_at: timestamp("updated_at").notNull().defaultNow(),

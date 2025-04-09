@@ -9,6 +9,7 @@ interface IUserInfo {
 	weight: number;
 	repetitions: number;
 	series: number;
+	muscle: string;
 	user_id: string;
 }
 
@@ -19,6 +20,7 @@ export default class CreateTrainingService {
 		weight,
 		repetitions,
 		series,
+		muscle,
 		user_id,
 	}: IUserInfo) {
 		const [equipamentoExistente] = await db
@@ -44,6 +46,7 @@ export default class CreateTrainingService {
 				weight,
 				repetitions,
 				series,
+				muscle,
 				user_id,
 			})
 			.returning();
