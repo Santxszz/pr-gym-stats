@@ -36,5 +36,4 @@ export default class EquipamentController {
 
 		return res.status(200).json(trainings);
 	}
-
 }
