@@ -1,3 +1,5 @@
+import type { Request, Response } from "express";
+
 import AuthUserService from "@api/v1/services/auth/auth-user-service";
 import CreateUserService from "@api/v1/services/users/create-user-service";
 import DeleteUserService from "@api/v1/services/users/delete-user-service";
@@ -5,11 +7,12 @@ import ListUsersService from "@api/v1/services/users/list-users-service";
 import ShowUserService from "@api/v1/services/users/show-user-service";
 import UpdateUserService from "@api/v1/services/users/update-user-service";
 import { getExtIdFromToken } from "@api/v1/utils/getUserInfoToken";
-import type { Request, Response } from "express";
-import z from "zod";
 
 export default class UserController {
-	public async create(req: Request, res: Response): Promise<Response> {
+	public async create(
+		req: Request,
+		res: Response,
+	): Promise<Response | undefined> {
 		const {
 			full_name,
 			nick_name,
@@ -134,7 +137,7 @@ export default class UserController {
 
 		return res.status(200).json({
 			id: updatedUser.id,
-			ext_id: updatedUser,
+			ext_id: userId,
 			full_name: updatedUser.full_name,
 			nick_name: updatedUser.nick_name,
 			email: updatedUser.email,

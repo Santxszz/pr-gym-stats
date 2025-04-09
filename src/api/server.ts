@@ -8,6 +8,7 @@ import cors from "cors";
 import errorHandler from "@api/v1/middlewares/errorHandler";
 import userRoutes from "./v1/routes/user.route";
 import healthRouter from "./v1/routes/health.route";
+import trainingRouter from "./v1/routes/training.route";
 
 const app = express();
 
@@ -17,8 +18,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Rotas
-app.use("/api/v1/", userRoutes);
-app.use("/api/v1/", healthRouter);
+app.use("/api/v1/user", userRoutes);
+app.use("/api/v1/health", healthRouter);
+app.use("/api/v1/training", trainingRouter)
 
 // Errors Middleware
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {

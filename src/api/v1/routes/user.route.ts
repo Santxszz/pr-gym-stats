@@ -1,13 +1,14 @@
 import { Router } from "express";
 import { celebrate, Joi, Segments } from "celebrate";
-import UserController from "@controllers/users/users.controllers";
-import userAutenticated from "../middlewares/userAuthenticated";
+
+import UserController from "@api/v1/controllers/users/UserController";
+import userAutenticated from "@middlewares/userAuthenticated";
 
 const userRoutes = Router();
 const userController = new UserController();
 
 userRoutes.post(
-	"/user",
+	"/create",
 	celebrate({
 		[Segments.BODY]: Joi.object({
 			full_name: Joi.string().required(),
@@ -24,7 +25,7 @@ userRoutes.post(
 );
 
 userRoutes.get(
-	"/user/:userId",
+	"/show/:userId",
 	celebrate({
 		[Segments.PARAMS]: Joi.object({
 			userId: Joi.string().required(),
@@ -34,10 +35,10 @@ userRoutes.get(
 	userController.show,
 );
 
-userRoutes.get("/users", userController.list);
+userRoutes.get("/list", userController.list);
 
 userRoutes.patch(
-	"/user/:userId",
+	"/update/:userId",
 	celebrate({
 		[Segments.PARAMS]: Joi.object({
 			userId: Joi.string().required(),
@@ -56,7 +57,7 @@ userRoutes.patch(
 );
 
 userRoutes.delete(
-	"/user/:userId",
+	"/delete/:userId",
 	celebrate({
 		[Segments.PARAMS]: Joi.object({
 			userId: Joi.string().required(),
@@ -76,8 +77,20 @@ userRoutes.post(
 	userController.auth,
 );
 
+// userRoutes.get(
+// 	"/userInfo",
+// 	userAutenticated,
+// 	celebrate({
+// 		[Segments.HEADERS]: Joi.object({
+// 			authorization: Joi.string().required(),
+// 		}).unknown(),
+// 	}),
+// 	userAutenticated,
+// 	userController.userInfo,
+// );
+
 userRoutes.get(
-	"/userInfo",
+	"/info",
 	userAutenticated,
 	celebrate({
 		[Segments.HEADERS]: Joi.object({

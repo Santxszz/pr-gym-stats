@@ -1,8 +1,9 @@
+import type { Request, Response } from "express";
+
 import GetUserIMCService from "@api/v1/services/health/get-user-imc";
 import CreateEquipService from "@api/v1/services/trainings/create-equip-service";
 import GetUserEquipService from "@api/v1/services/trainings/get-user-equip-service";
 import { getExtIdFromToken } from "@api/v1/utils/getUserInfoToken";
-import type { Request, Response } from "express";
 
 export default class HealthController {
 	public async getImcHealth(req: Request, res: Response): Promise<Response> {
