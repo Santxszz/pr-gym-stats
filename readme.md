@@ -20,6 +20,15 @@ A **PowerTrack Fitness API** é um sistema em desenvolvimento para ajudar atleta
 - `List` ➔ Listagem de usuários  
 - `Show` ➔ Visualização de perfil  
 
+✅ **Funcionalidades**  
+- `Create` ➔ Cadastro de usuários
+- `Create` ➔ Cadastro de equipamentos (Serão usados em relação com os treinos)
+- `Show` ➔ Listagem dos equipamentos cadastrados (filtrados pelo usuário)
+- `Delete` ➔ Remoção de contas  
+- `Update` ➔ Atualização de dados  
+- `List` ➔ Listagem de usuários  
+- `Show` ➔ Visualização de perfil  
+
 📅 **Em breve:**  
 - Registro de treinos personalizados  
 - Evolução de cargas e métricas  

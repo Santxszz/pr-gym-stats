@@ -1,6 +1,5 @@
 import { integer, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
 import { createId } from "@paralleldrive/cuid2";
-import { is } from "drizzle-orm";
 
 export const usersTable = pgTable("users_table", {
 	// Id's
@@ -22,12 +21,12 @@ export const usersTable = pgTable("users_table", {
 	age: integer("age").notNull(),
 
 	// User Address
-	// zip_code: text("zip_code").notNull(),
-	// street: text("street").notNull(),
-	// street_number: text("street_number").notNull(),
-	// neighborhood: text("neighborhood").notNull(),
-	// city: text("city").notNull(),
-	// state: text("state").notNull(), // TODO: Add
+	zip_code: text("zip_code").notNull(),
+	street: text("street"),
+	street_number: text("street_number"),
+	neighborhood: text("neighborhood"),
+	city: text("city").notNull(),
+	state: text("state").notNull(), // TODO: Add
 
 	// User Security
 	password: text("password").notNull(),
@@ -41,43 +40,37 @@ export const usersTable = pgTable("users_table", {
 	deleted_at: timestamp("deleted_at").notNull().defaultNow(),
 });
 
-export const equipamentos = pgTable("equipamentos", {
+export const equipment = pgTable("equipaments", {
 	id: serial("id"),
 	ext_id: text("ext_id")
 		.primaryKey()
 		.$defaultFn(() => createId()),
-	usuario_id: text("usuario_id")
+	user_id: text("user_id")
 		.notNull()
 		.references(() => usersTable.ext_id, { onDelete: "cascade" }),
-	nome: text("nome").notNull(),
-	tipo: text("tipo").notNull(), // "Máquina", "Livre", "Acessório"
+	name: text("name").notNull(),
+	equipament_kind: text("equipament_kind").notNull(), // "Máquina", "Livre"
 	created_at: timestamp("created_at").notNull().defaultNow(),
 	updated_at: timestamp("updated_at").notNull().defaultNow(),
 });
 
-export const treinos = pgTable("treinos", {
+export const trainings = pgTable("trainings", {
 	id: serial("id"),
 	ext_id: text("ext_id")
 		.primaryKey()
 		.$defaultFn(() => createId()),
-	usuario_id: text("usuario_id")
+	user_id: text("user_id")
 		.notNull()
 		.references(() => usersTable.ext_id, { onDelete: "cascade" }),
-	equipamento_id: text("equipamento_id").references(() => equipamentos.ext_id, {
+	equipament_id: text("equipament_id").references(() => equipment.ext_id, {
 		onDelete: "set null",
 	}),
-	movimento: text("movimento").notNull(),
-	peso: integer("peso").notNull(),
-	repeticoes: integer("repeticoes").notNull(),
+	moviment: text("movimento").notNull(),
+	weight: integer("peso").notNull(),
+	repetitions: integer("repeticoes").notNull(),
 	series: integer("series").notNull().default(3),
-	data: timestamp("data").notNull().defaultNow(),
+	muscle: text("muscle").notNull(),
+	date: timestamp("data").notNull().defaultNow(),
 	created_at: timestamp("created_at").notNull().defaultNow(),
 	updated_at: timestamp("updated_at").notNull().defaultNow(),
-});
-
-export const musculos_treino = pgTable("musculos_treino", {
-	treino_id: text("treino_id")
-		.notNull()
-		.references(() => treinos.ext_id, { onDelete: "cascade" }),
-	musculo: text("musculo").notNull(),
 });

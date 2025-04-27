@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    /* Configurações básicas */
     "target": "ES2022",
     "lib": ["ES2023"],
     "module": "Node16",
@@ -9,8 +8,8 @@
     "strict": true,
     "noImplicitAny": true,
     "skipLibCheck": true,
+    
 
-    /* Configurações de paths */
     "baseUrl": "./src",
     "paths": {
       "@database/*": ["database/*"],
@@ -22,13 +21,11 @@
       "@utils/*": ["api/v1/utils/*"],
     },
 
-    /* Configurações de output */
     "outDir": "./dist",
     "rootDir": "./src",
     "sourceMap": true,
     "declaration": true,
 
-    /* Module Resolution */
     "moduleResolution": "Node16"
   },
   "include": ["src/**/*"],

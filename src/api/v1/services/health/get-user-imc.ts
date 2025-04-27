@@ -3,12 +3,12 @@ import { db } from "@database/db";
 import { usersTable } from "@database/schema";
 import { eq } from "drizzle-orm";
 
-interface IUserInfo {
+interface IPayload {
 	userId: string;
 }
 
 export default class GetUserIMCService {
-	public async execute({ userId }: IUserInfo) {
+	public async execute({ userId }: IPayload) {
 		const userIdExists = await db
 			.select()
 			.from(usersTable)
@@ -32,7 +32,7 @@ export default class GetUserIMCService {
 		let recommendation = "";
 
 		if (imc < 18.5) {
-			imcCategory = "O seu peso está abaixo do normal";
+			imcCategory = " ";
 			recommendation =
 				"Você deve ganhar peso para atingir um IMC saudável. Consulte um nutricionista para orientações personalizadas.";
 		} else if (imc >= 18.5 && imc < 24.9) {
