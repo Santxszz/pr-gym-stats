@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "postinstall": "typesync",
     "dev": "tsx watch src/api/server.ts",
     "build": "tsc",
     "start": "node dist/api/server.js"
@@ -19,11 +20,10 @@
     "@types/jsonwebtoken": "^9.0.9",
     "@types/node": "^22.14.0",
     "dotenv": "^16.4.7",
-    "drizzle-kit": "^0.31.0",
+    "drizzle-kit": "^0.30.6",
     "drizzle-orm": "^0.41.0",
     "tsx": "^4.19.3",
-    "typescript": "^5.8.3",
-    "typesync": "^0.14.3"
+    "typescript": "^5.8.3"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.0",
