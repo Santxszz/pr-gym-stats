@@ -19,7 +19,7 @@
     "@types/jsonwebtoken": "^9.0.9",
     "@types/node": "^22.14.0",
     "dotenv": "^16.4.7",
-    "drizzle-kit": "^0.30.6",
+    "drizzle-kit": "^0.31.0",
     "drizzle-orm": "^0.41.0",
     "tsx": "^4.19.3",
     "typescript": "^5.8.3",
