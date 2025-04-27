@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx watch src/api/server.ts"
+    "dev": "tsx watch src/api/server.ts",
+    "build": "tsx build src/api/server.ts",
+    "start": "tsx build src/api/server.ts && node dist/server.js"
   },
   "keywords": [],
   "author": "",
